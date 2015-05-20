@@ -37,7 +37,8 @@ shinyUI(fluidPage(
         
         # Show plot
         mainPanel(
-            plotOutput("distPlot")
+            #plotOutput("distPlot")
+            htmlOutput("distPlot")
         )
     )
 ))

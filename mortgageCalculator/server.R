@@ -9,21 +9,20 @@ source("mortgage.R")
 shinyServer(function(input, output) {
     
     # Expression that generates plot
-    output$distPlot <- renderGvis({
+    output$mortgagePlot <- renderGvis({
         
         # Evaluate the mortgage values reactively
         mortgage(P = input$currentAmount,
                  I = input$currentPercent,
                  L = input$currentYears,
                  plotData = F)
-        month <- row.names(aDFmonth)
-        principal <- aDFmonth$Amortization
+        
+        month <- as.numeric(1:nrow(aDFmonth))
+        amortization <- aDFmonth$Amortization
+        dfAmortization <- data.frame(cbind(month, amortization))
         
         # Draw the plot
-        gvisLineChart(aDFmonth, options = list(height = 600, width = 600))
+        gvisLineChart(dfAmortization, options = list(height = 600, width = 600))
         
-        # TODO:
-        # Add a first column containing months
-        # Get rid of "new mortgage" section and just print output
     })
-})
+}

@@ -23,8 +23,7 @@ shinyServer(function(input, output) {
         # Draw the plot
         gvisLineChart(dfAmortization,
                       options = list(
-                          height = 600,
-                          width = 600,
+                          height = 800,
                           title = "Prinicpal Remaining on the Loan Each Month",
                           hAxis = "{title: 'Month'}",
                           vAxis = "{title: 'Principal (in USD)'}",

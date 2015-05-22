@@ -4,7 +4,6 @@ library(googleVis)
 source("mortgage.R")
 # From http://faculty.ucr.edu/~tgirke/Documents/R_BioCond/My_R_Scripts/mortgage.R
 
-
 # Define server logic
 shinyServer(function(input, output) {
     
@@ -22,7 +21,15 @@ shinyServer(function(input, output) {
         dfAmortization <- data.frame(cbind(month, amortization))
         
         # Draw the plot
-        gvisLineChart(dfAmortization, options = list(height = 600, width = 600))
-        
+        gvisLineChart(dfAmortization,
+                      options = list(
+                          height = 600,
+                          width = 600,
+                          title = "Prinicpal Remaining on the Loan Each Month",
+                          hAxis = "{title: 'Month'}",
+                          vAxis = "{title: 'Principal (in USD)'}",
+                          legend = "{position: 'none'}"
+                          )
+                      )
     })
-}
+})
